@@ -66,18 +66,33 @@ Create a `.env` file in the `backend/` directory:
 | `OPENAI_API_KEY` | Your OpenAI API key | `sk-proj-...` |
 | `SECRET_KEY` | Django secret key | Any random string |
 | `DEBUG` | Debug mode (use `False` in production) | `True` |
-| `ALLOWED_HOSTS` | Comma-separated allowed hosts | `localhost,127.0.0.1` |
-| `CORS_ALLOWED_ORIGINS` | Frontend URL for CORS | `http://localhost:5173` |
 
 ## Deployment
 
-### Backend (Render/Railway)
-TBD
-
+### Backend (Render)
+1. Create a new Web Service on Render.
+2. Connect your GitHub repository and select the backend folder.
+3. Set the Build Command:
+```bash
+pip install -r requirements.txt
+```
+4. Set the Start Command:
+```bash
+gunicorn backend.wsgi
+```
+5. Add the following Environment Variables on Render:
+  - OPENAI_API_KEY
+  - SECRET_KEY
+  - DEBUG=False
+6. Deploy the project
 ### Frontend (Vercel)
-TBD
+1. Import the repository into Vercel.
+2. Set the root directory to the frontend folder.
+3. In the Vercel dashboard Environment Variables, add:
+   - VITE_API_URL=https://your-render-backend-url
+4. Deploy the project.
+5. Vercel will provide a live frontend URL.
 
 ## Live URLs
-
-- **Frontend:** TBD
-- **Backend:** TBD
+- **Frontend:** https://mood-architect-two.vercel.app/
+- **Backend:** https://mood-architect-backend-ov42.onrender.com
