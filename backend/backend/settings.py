@@ -75,6 +75,7 @@ ROOT_URLCONF = 'backend.urls'
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'https://mood-architect-two.vercel.app/',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
