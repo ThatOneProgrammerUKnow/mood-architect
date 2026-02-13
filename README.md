@@ -89,7 +89,7 @@ gunicorn backend.wsgi
 1. Import the repository into Vercel.
 2. Set the root directory to the frontend folder.
 3. In the Vercel dashboard Environment Variables, add:
-   - VITE_API_URL=https://your-render-backend-url
+- VITE_API_URL=https://your-render-backend-url
 4. Deploy the project.
 5. Vercel will provide a live frontend URL.
 
