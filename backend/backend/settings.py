@@ -34,7 +34,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
 
 # Application definition
@@ -70,7 +70,7 @@ ROOT_URLCONF = 'backend.urls'
 
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  # Vue dev server
+    'http://localhost:5173',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
