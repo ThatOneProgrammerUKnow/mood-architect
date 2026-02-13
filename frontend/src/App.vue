@@ -100,6 +100,7 @@ body {
 section {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 h1 { 
@@ -153,7 +154,8 @@ input:active, textarea:active {
 
 @media (max-width: 768px) {
   section {
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   }
 }
 </style>
