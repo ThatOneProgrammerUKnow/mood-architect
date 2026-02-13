@@ -34,7 +34,11 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'mood-architect-backend-ov42.onrender.com',  # Your actual Render URL
+]
 
 
 # Application definition
