@@ -28,22 +28,26 @@ def generate_affirmation(request):
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
     
     # OpenAI Response
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {
-                "role": "system",
-                "content": f'''You are an empathetic affirmation therapist for {name}. Keep your resnonses between 2 and 4 
-                sentances. Dont give medical or legal advice. If the uses suggests self harm, advice seeking profesional help''',
-            },
-            {
-                "role":"user",
-                "content":f"This is what the user is feeling:\n\n{feeling}"
-            }
-        ],
-        max_tokens=100
-    )
-    # Extract & Return
-    affirmation = response.choices[0].message.content
-    return JsonResponse({'affirmation': affirmation})
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": f'''You are an empathetic affirmation therapist for {name}. Keep your resnonses between 2 and 4 
+                    sentances. Dont give medical or legal advice. If the user suggests self harm, advice seeking profesional help.
+                    Do not ask questions, unless they are rhetorical ''',
+                },
+                {
+                    "role":"user",
+                    "content":f"This is what the user is feeling:\n\n{feeling}"
+                }
+            ],
+            max_tokens=100
+        )
+        # Extract & Return
+        affirmation = response.choices[0].message.content
+        return JsonResponse({'affirmation': affirmation})
+    except Exception as e:
+        return JsonResponse({'error': 'Failed to generate response'}, status=502)
 
