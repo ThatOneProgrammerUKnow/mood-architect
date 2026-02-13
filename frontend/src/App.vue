@@ -1,5 +1,6 @@
+<!-- JAVASCRIPT -->
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const name = ref('')
 const feeling = ref('')
@@ -12,8 +13,9 @@ async function submitForm() {
   affirmation.value = ""
   loading.value = true
 
+  // Post data to backend
   try {
-    const response = await fetch("http://localhost:8000/api/affirmation/", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/affirmation/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,9 +38,12 @@ async function submitForm() {
   } finally {
     loading.value = false
   }
+
 }
 </script>
 
+
+<!-- HTML -->
 <template>
   <h1>Mood Architect</h1>
   <section>
@@ -51,31 +56,34 @@ async function submitForm() {
       <label for="feeling">Describe how you are feeling:</label>
       <textarea rows="5" id="feeling" v-model="feeling"></textarea>
 
-      <button class="btn" type="submit">Submit</button>
+      <button class="btn" type="submit">Generate Response</button>
     </form>
 
     <div class="card">
       <p v-if="loading">Generating response...</p>
+      <p v-else-if="error" class="color-red">{{ error }}</p>
       <p v-else-if="affirmation">{{ affirmation }}</p>
       <p v-else>Response will appear here</p>
     </div>
   </section>
 </template>
 
+<!-- CASCADING STYLE SHEETS -->
 <style>
 :root {
   --text-light: white;
   --text-dark: black;
-  --input-bg: white;         
-  --bg-start: #084500;   
-  --bg-end: #0B5D00;
-  --card-bg: #006756;
+  --input-bg: rgb(228, 228, 228);         
+  --bg-start: #274c77;   
+  --bg-end: #274c77;
+  --card-bg: #FFFFFF;
   --card-border: #003a30;
-  --btn-bg: #bbffb2;
-  --btn-hover: #a8e69f;
-  --btn-text: #0B5D00;
-  --btn-border: rgb(3, 27, 0);
-  --btn-shadow: #4a834225;
+
+  --btn-bg: #a3cef1;
+  --btn-hover: #9dc6e7;
+  --btn-text: #3e5568;
+  --btn-border: #6a8499;
+  --btn-shadow: #80a7c725;
 }
 
 #app {
@@ -97,7 +105,9 @@ section {
 h1 { 
   color: var(--text-light);
 }
-
+p {
+  font-size: 18px;
+}
 .card {
   padding: 30px;
   display: flex;
@@ -108,7 +118,7 @@ h1 {
   border-radius: 30px;
   margin: 25px;
   background: var(--card-bg);
-  color: var(--text-light);
+  color: var(--text-dark);
 }
 
 input, textarea {
@@ -117,7 +127,8 @@ input, textarea {
   border-radius: 5px;
   margin: 15px;
   color: var(--text-dark);
-  padding: 3px;
+  padding: 5px;
+  font-size: 18px;
 }
 input:active, textarea:active {
   background: var(--input-bg);
@@ -135,4 +146,7 @@ input:active, textarea:active {
   border: 2px solid var(--btn-border);
 
 }
+
+/* Utilities */
+.color-red {color:rgb(255, 63, 63);}
 </style>
