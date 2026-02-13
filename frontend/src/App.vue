@@ -91,10 +91,12 @@ async function submitForm() {
   padding: 10px;
   box-sizing: border-box;
 }
-
+html, body{
+  height: 100%;
+  margin: 0;
+}
 body {
   background: linear-gradient(to bottom right, var(--bg-start), var(--bg-end));
-  height: 100vh;
 }
 
 section {
@@ -156,6 +158,7 @@ input:active, textarea:active {
   section {
   display: flex;
   flex-direction: column;
+  height:100%;
   }
 }
 </style>
