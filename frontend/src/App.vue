@@ -74,8 +74,7 @@ async function submitForm() {
   --text-light: white;
   --text-dark: black;
   --input-bg: rgb(228, 228, 228);         
-  --bg-start: #274c77;   
-  --bg-end: #274c77;
+  --bg: #274c77;   
   --card-bg: #FFFFFF;
   --card-border: #003a30;
 
@@ -86,17 +85,14 @@ async function submitForm() {
   --btn-shadow: #80a7c725;
 }
 
-#app {
-  height: 100vh;
+#app { 
   padding: 10px;
   box-sizing: border-box;
+  background: var(--bg);
 }
-html, body{
-  height: 100%;
-  margin: 0;
-}
+
 body {
-  background: linear-gradient(to bottom right, var(--bg-start), var(--bg-end));
+  background: var(--bg);
 }
 
 section {
@@ -156,9 +152,23 @@ input:active, textarea:active {
 
 @media (max-width: 768px) {
   section {
-  display: flex;
-  flex-direction: column;
-  height:100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    margin: 10px;
+    width: auto; /* ensure full width */
+  }
+
+  input, textarea {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  button.btn {
+    width: 100%;
   }
 }
 </style>
