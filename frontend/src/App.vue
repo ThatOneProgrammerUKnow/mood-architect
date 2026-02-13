@@ -149,4 +149,11 @@ input:active, textarea:active {
 
 /* Utilities */
 .color-red {color:rgb(255, 63, 63);}
+
+
+@media (max-width: 768px) {
+  section {
+    flex-direction: column;
+  }
+}
 </style>
